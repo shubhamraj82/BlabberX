@@ -114,7 +114,7 @@ export default function Home() {
 
           {/* enhanced CTA sections */}
           <div className="w-full max-w-4xl">
-            <div className="rounded-2xl border bg-gradient-to-br from-primary/5 to-primary/10 p-12 text-center">
+            <div className="rounded-2xl border bg-linear-to-br from-primary/5 to-primary/10 p-12 text-center">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Ready to transform your conversations
               </h2>
