@@ -55,5 +55,27 @@ export function LoadingSpinner({
 
 
 export function InLineSpinner({
-    
-})
+    size="sm",
+    className,
+}:{
+    size?: "sm" | "md" | "lg";
+    className?: string;
+}){
+    const sizeClasses={
+        sm:"w-4 h-4 border-2",
+        md:"w-6 h-6 border-2",
+        lg:"w-6 h-6 border-2",
+    };
+
+    return (
+        <div
+        className={cn(
+            "border-muted-foreground/20 border-t-primary rounded-full animate-spin",
+            sizeClasses[size],
+            className
+        )}
+        role='status'
+        aria-label='Loading'
+        />
+    )
+}
