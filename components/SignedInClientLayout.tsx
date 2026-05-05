@@ -20,11 +20,12 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import Link from "next/link";
+import "stream-chat-react/dist/css/index.css";
 
 function SignedInClientLayout({ children }: { children: ReactNode }) {
   return (
     <UserSyncWrapper>
-      <Chat client={streamClient}>
+      <Chat client={streamClient} theme="messaging light">
       <SidebarProvider
       style={
         {

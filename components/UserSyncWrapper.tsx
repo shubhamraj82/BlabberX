@@ -44,19 +44,21 @@ function UserSyncWrapper({children}: {children: React.ReactNode}) {
                 imageUrl: user.imageUrl || '',
             });
 
-             // 2. Connect User to Stream Chat
-             await streamClient.connectUser(
-                {
-                    id: user.id,
-                    name:
-                     user.fullName ||
-                     user.firstName ||
-                     user.emailAddresses[0].emailAddress ||
-                     "Unkown User",
-                    image: user.imageUrl || '',
-                },
-                tokenProvider
-             )
+             // 2. Connect user to Stream Chat only when needed.
+             if(streamClient.userID !== user.id){
+                await streamClient.connectUser(
+                   {
+                       id: user.id,
+                       name:
+                        user.fullName ||
+                        user.firstName ||
+                        user.emailAddresses[0].emailAddress ||
+                        "Unkown User",
+                       image: user.imageUrl || '',
+                   },
+                   tokenProvider
+                )
+             }
         } catch (error) {
             console.error('Error syncing user:', error);
             setError( error instanceof Error ? error.message : "An error occurred while syncing user data. Please try again.");
@@ -82,14 +84,13 @@ function UserSyncWrapper({children}: {children: React.ReactNode}) {
             disconnectUser();
             setIsLoading(false);
         }
-
-        //CleanUp function
-        return () =>{
-            if(user){
-                disconnectUser();
-            }
-        } 
     },[user, isUserLoaded,syncUser,disconnectUser])
+
+    useEffect(() => {
+        return () => {
+            disconnectUser();
+        };
+    }, [disconnectUser]);
 
     //Loading state
     if(!isUserLoaded || isLoading){

@@ -17,7 +17,25 @@ function Dashborad() {
 
   const handleCall = () => {}
 
-  const handleLeaveChat = () => {}
+  const handleLeaveChat = async() => {
+    if(!channel || !user?.id){
+      console.error("Missing channel or user ID");
+      return;
+    }
+
+    // confirm before leaving
+    const confirmed = window.confirm("Are you sure you want to leave this chat?");
+    if(!confirmed) return;
+
+    try {
+      await channel.removeMembers([user.id]);
+      setActiveChannel(undefined)
+
+      router.push("/dashboard");
+    } catch (error) {
+      console.error("Error leaving chat:", error);
+    }
+  }
 
 
   return(
@@ -47,13 +65,14 @@ function Dashborad() {
                   Leave Chat
                 </Button>
               </div>
+              </div>
 
               <MessageList/>
 
               <div className="sticky bottom-0 w-full">
                 <MessageComposer/>
               </div>
-            </div>
+            
         </Window>
         <Thread/>
       </Channel>

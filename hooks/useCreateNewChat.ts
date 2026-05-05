@@ -13,11 +13,16 @@ export function useCreateNewChat(){
         const isGroupChat = members.length > 2; // More than 2 people = groupchat
 
         // Only check for existing chats for 1-1 conversations 
-        if(!isGroupChat){
+        if(!isGroupChat && members.length === 2){
+            const [memberA, memberB] = members;
             const existingChannel = await streamClient.queryChannels(
                 {
                     type:"messaging",
-                    members: { $eq:members}, // Exact match for 1 - 1 chats
+                    $and: [
+                        { members: { $in: [memberA] } },
+                        { members: { $in: [memberB] } },
+                    ],
+                    member_count: 2,
                 },
             { created_at:-1},
             {limit:1}

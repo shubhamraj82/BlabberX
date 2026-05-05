@@ -57,7 +57,7 @@ export function NewChatDialog({children}:{children:React.ReactNode}){
         const channel = await createNewChat({
             members: [
                 user?.id as string,
-                ...selectedUsers.map((user) => user._id),
+                ...selectedUsers.map((user) => user.userId),
             ],
             createdBy: user?.id as string,
             groupName: isGroupchat ? goupName.trim() || undefined : undefined,
