@@ -29,7 +29,7 @@ function SignedInClientLayout({ children }: { children: ReactNode }) {
       <SidebarProvider
       style={
         {
-          "--sidebar-width": "19rem",
+          "--sidebar-width": "24.87rem",
         } as React.CSSProperties
       }
     >

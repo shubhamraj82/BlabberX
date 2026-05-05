@@ -61,10 +61,10 @@ export function useCreateNewChat(){
             }
 
             const channel = streamClient.channel(
-                isGroupChat ? "team" : "messaging",
+                "messaging",
                 channelId,
                 channelData
-            );  
+            );
 
             await channel.watch({
                 presence:true,

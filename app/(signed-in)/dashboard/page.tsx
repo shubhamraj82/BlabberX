@@ -6,7 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import { LogOutIcon, VideoIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import { Window,Thread, Channel, useChatContext, ChannelHeader, MessageList, MessageComposer } from "stream-chat-react";
+import { Window,Thread, Channel, ChatView, useChatContext, ChannelHeader, MessageList, MessageComposer } from "stream-chat-react";
 
 function Dashborad() {
 
@@ -42,7 +42,9 @@ function Dashborad() {
      <div className="flex flex-col w-full flex-1">
     {channel ? (
       <Channel>
-        <Window>
+        <ChatView>
+          <ChatView.Channels>
+            <Window>
             <div className="flex items-center justify-between">
               {channel.data?.member_count ===1 ? (
                 <ChannelHeader title="Everyone else has left this chat"/>
@@ -73,8 +75,12 @@ function Dashborad() {
                 <MessageComposer/>
               </div>
             
-        </Window>
-        <Thread/>
+            </Window>
+          </ChatView.Channels>
+          <ChatView.Threads>
+            <Thread/>
+          </ChatView.Threads>
+        </ChatView>
       </Channel>
     ):(
       <div className="flex flex-col items-center justify-center h-full">
