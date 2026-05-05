@@ -8,7 +8,7 @@ export function useCreateNewChat(){
     }:{
         members:string[];
         createdBy:string;
-        groupName:string; // optional group name for group chats
+        groupName?: string; // optional group name for group chats
     })=>{
         const isGroupChat = members.length > 2; // More than 2 people = groupchat
 
@@ -51,7 +51,7 @@ export function useCreateNewChat(){
             };
 
             // For group chats , add group-specific metadata
-            if(!isGroupChat){
+            if(isGroupChat){
                 channelData.name = groupName || `Group chat (${members.length} members)`;
             }
 
