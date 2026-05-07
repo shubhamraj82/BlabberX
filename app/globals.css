@@ -122,9 +122,24 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
   }
   html {
     @apply font-sans;
+  }
+}
+
+@layer base {
+  body {
+    background-image:
+      radial-gradient(circle at 10% 10%, color-mix(in oklab, var(--primary) 12%, transparent) 0%, transparent 38%),
+      radial-gradient(circle at 90% 0%, color-mix(in oklab, var(--accent) 8%, transparent) 0%, transparent 34%);
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply border bg-card/80 backdrop-blur-md shadow-sm;
   }
 }

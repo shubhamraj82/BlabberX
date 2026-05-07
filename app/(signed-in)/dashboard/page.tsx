@@ -43,13 +43,13 @@ function Dashborad() {
 
 
   return(
-     <div className="flex flex-col w-full flex-1">
+     <div className="flex w-full flex-1 flex-col">
     {channel ? (
       <Channel>
         <ChatView>
           <ChatView.Channels>
             <Window>
-            <div className="flex items-center justify-between">
+            <div className="glass-card mb-3 flex items-center justify-between rounded-2xl p-3 sm:p-4">
               {channel.data?.member_count ===1 ? (
                 <ChannelHeader title="Everyone else has left this chat"/>
               ):(
@@ -57,7 +57,7 @@ function Dashborad() {
               )}
 
               <div className="flex items-center gap-2">
-                <Button variant="outline" onClick={handleCall}>
+                <Button variant="outline" onClick={handleCall} className="rounded-full">
                   <VideoIcon className="w-4 h-4"/>
                   Video Call
                 </Button>
@@ -65,7 +65,7 @@ function Dashborad() {
                 <Button
                 variant="outline"
                 onClick={handleLeaveChat}
-                className="text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950"
+                className="rounded-full text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950"
                 >
                   <LogOutIcon className="w-4 h-4"/>
                   Leave Chat
@@ -87,7 +87,7 @@ function Dashborad() {
         </ChatView>
       </Channel>
     ):(
-      <div className="flex flex-col items-center justify-center h-full">
+      <div className="glass-card flex h-full flex-col items-center justify-center rounded-2xl p-8 text-center">
         <h2 className="text-2xl font-semibold text-muted-foreground mb-4">
           No Chat selected
         </h2>

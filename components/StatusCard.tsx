@@ -12,10 +12,10 @@ export function StatusCard({title, description, action, className, children}: St
   return (
     <div
     className={`flex items-center justify-center min-h-[400px] ${className}`}>
-        <div className='text-center space-y-4 max-w-md w-full mx-4'>
+        <div className='glass-card mx-4 w-full max-w-md space-y-4 rounded-2xl p-8 text-center'>
             {children}
-            <div className='text-xl font-semibold'>{title}</div>
-            {description && <div className='text-sm'>{description}</div>}
+            <div className='text-xl font-semibold tracking-tight'>{title}</div>
+            {description && <div className='text-sm leading-6 text-muted-foreground'>{description}</div>}
             {action && <div className='mt-4'>{action}</div>}
         </div>
     </div>

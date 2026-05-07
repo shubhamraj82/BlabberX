@@ -14,12 +14,10 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
-import { GalleryVerticalEndIcon } from "lucide-react"
 import { Button } from "./ui/button"
 import { useUser, UserButton } from "@clerk/nextjs"
 import { ChannelList } from "stream-chat-react"
 import { ChannelFilters, ChannelSort } from "stream-chat"
-import { Presence } from "radix-ui/internal"
 import { NewChatDialog } from "./ui/NewChatDialog"
 
 
@@ -36,9 +34,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     last_message_at: -1,
   }
   return (
-    <Sidebar variant="floating" {...props}>
+    <Sidebar variant="floating" className="border-r bg-sidebar/85 backdrop-blur-md" {...props}>
       <SidebarHeader>
-        <SidebarMenu>
+        <SidebarMenu className="rounded-xl border bg-sidebar-accent/40 p-2">
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
              <div className="flex items-center justify-between w-full">
@@ -53,7 +51,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <UserButton
                 appearance={{
                   elements: {
-                    avatarBox: "size-9",
+                    avatarBox: "size-9 ring-2 ring-sidebar/80 shadow-md",
                   },
                 }}
               />
@@ -66,7 +64,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup>
           <SidebarMenu className="gap-2">
             <NewChatDialog>
-           <Button className="w-full" variant="outline">
+           <Button className="w-full rounded-xl" variant="outline">
             Start New Chat
            </Button>
            </NewChatDialog>
@@ -76,8 +74,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             filters={filters} 
             options={options}
             EmptyStateIndicator={()=>(
-              <div className=" flex flex-col items-center justify-center h-full py-12 px-4">
-                <div className="text-6xl mb-6 opacity-20"></div>
+              <div className="flex h-full flex-col items-center justify-center rounded-xl border border-dashed py-12 px-4">
                 <h2 className="text-xl font-medium text-foreground mb-2">
                   Ready to chat?
                 </h2>

@@ -35,19 +35,19 @@ function SignedInClientLayout({ children }: { children: ReactNode }) {
     >
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 px-4">
+        <header className="sticky top-0 z-20 flex h-16 shrink-0 items-center gap-2 border-b bg-background/80 px-4 backdrop-blur-md">
           <SidebarTrigger className="-ml-1" />
           <Separator
             orientation="vertical"
             className="mr-2 data-vertical:h-4 data-vertical:self-auto"
           />
           <Link href="/dashboard">
-          <h1 className="text-lg font-bold tracking-wider uppercase">
+          <h1 className="text-sm font-semibold tracking-[0.24em] uppercase text-foreground/90">
             Beam
           </h1>
           </Link>
         </header>
-      <div className="flex flex-1 flex-col gap-4 p-4 pt-8">
+      <div className="flex flex-1 flex-col gap-4 p-4 pt-6 md:p-6">
         {children}
         </div>
       </SidebarInset>
